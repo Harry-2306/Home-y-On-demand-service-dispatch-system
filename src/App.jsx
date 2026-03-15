@@ -1,21 +1,42 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Landing from "./components/Landing";
+import Navbar from "./components/Navbar";
+import ScrollFadeIn from "./components/ScrollFadeIn";
+import "./App.css";
 import ServicePage from "./servicePage/ServicePage";
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/services" element={<ServicePage />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <ScrollFadeIn>
+                <Navbar />
+              </ScrollFadeIn>
+              <ScrollFadeIn>
+                <Landing />
+              </ScrollFadeIn>
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/services"
+          element={
+            <>
+              <Navbar />
+              <ServicePage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
-
-      <Footer />
     </BrowserRouter>
   );
 }
